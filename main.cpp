@@ -1,6 +1,7 @@
 #include <iostream>
 #include <graphics.h>
 #include <string>
+#include "Dictionary.h"
 using namespace std;
 
 int main()
