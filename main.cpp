@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <graphics.h>
 #include <string>
 #include "Dictionary.h"
@@ -6,6 +7,9 @@ using namespace std;
 
 int main()
 {
+	ifstream infile;
+	string path;
+	Dictionary dic;
 	int operate = 0;
 	while (operate != 4)
 	{
@@ -16,10 +20,21 @@ int main()
 			<< "4----Exit" << endl
 			<< "Choose Your Operation:";
 		cin >> operate;
+		cin.clear();  //忽略重复操作
+		cin.ignore(65535,'\n'); 
 		switch (operate)
 		{
 		case 1:
-			cout << "Load Document" << endl;
+			cout << "Input the path: ";
+			getline(cin, path, '\n');
+			infile.open(path, ios::in); //打开文件
+			if (!infile.is_open())
+				cerr << "Can't open with " << path << endl;
+			else
+			{
+				infile >> dic; //传入文件流
+				infile.close();
+			}
 			break;
 		case 2:
 			cout << "Count a word" << endl;
