@@ -25,11 +25,13 @@ int main()
 	while (operate != 4)
 	{
 
-		cout << "1----Load Document" << endl
+		cout << "********************" << endl
+			<< "1----Load Document" << endl
 			<< "2----Count a word" << endl
 			<< "3----Locate a word" << endl
 			<< "4----Exit" << endl
-			<< "Choose Your Operation:";
+			<< "********************" << endl
+			<< "Choose Your Operation: ";
 		cin >> operate;
 		cin.clear();  //忽略重复操作
 		cin.ignore(65535, '\n');
@@ -47,7 +49,10 @@ int main()
 			if (!infile.is_open())
 				cerr << "Can't open with " << path << endl;
 			else
+			{
 				infile >> dic; //传入文件流
+				cout << "Done." << endl;
+			}
 			break;
 		case 2:
 			if (!infile.is_open()) //文件未打开
