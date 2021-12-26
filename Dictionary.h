@@ -12,10 +12,11 @@ class Dictionary
 public:
 	Dictionary() {}
 	~Dictionary() {}
-	unsigned int Count(string word) const;
-	vector<vector<int>> Locate(string word) const;
+	void Count(string word) const; //计数
+	void Locate(string word) const; //定位
+	void Empty() { map.clear(); } //清空
 	friend ifstream& operator>>(ifstream& input, Dictionary& d);
 
 private:
-	vector<vector<string>> map;
+	vector<vector<string>> map; //邻接矩阵存储
 };

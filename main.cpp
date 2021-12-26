@@ -19,7 +19,7 @@ string& trim(string& s) //去除字符串前后引号
 int main()
 {
 	ifstream infile;
-	string path;
+	string path, word;
 	Dictionary dic;
 	int operate = 0;
 	while (operate != 4)
@@ -32,33 +32,50 @@ int main()
 			<< "Choose Your Operation:";
 		cin >> operate;
 		cin.clear();  //忽略重复操作
-		cin.ignore(65535,'\n'); 
+		cin.ignore(65535, '\n');
 		switch (operate)
 		{
 		case 1:
+			if (infile.is_open())//若已打开，则先关闭
+			{
+				infile.close(); 
+				dic.Empty(); //清空原有
+			}
 			cout << "Input the path: ";
-			getline(cin, path, '\n');
+			getline(cin, path, '\n'); //路径可能含空格
 			infile.open(trim(path), ios::in); //打开文件
 			if (!infile.is_open())
 				cerr << "Can't open with " << path << endl;
 			else
-			{
 				infile >> dic; //传入文件流
-				infile.close();
-			}
 			break;
 		case 2:
-			cout << "Count a word" << endl;
+			if (!infile.is_open()) //文件未打开
+				cerr << "Document haven't been loaded!" << endl;
+			else
+			{
+				cout << "Input the word: ";
+				cin >> word;
+				dic.Count(word);
+			}
 			break;
 		case 3:
-			cout << "Locate a word" << endl;
+			if (!infile.is_open())
+				cerr << "Document haven't been loaded!" << endl;
+			else
+			{
+				cout << "Input the word: ";
+				cin >> word;
+				dic.Locate(word);
+			}
 			break;
 		case 4:
+			if (infile.is_open())
+				infile.close(); //关闭文件流
 			return 1;
 		default:
 			cout << "Wrong Operation" << endl;
 			break;
 		}
 	}
-
 }
