@@ -5,6 +5,17 @@
 #include "Dictionary.h"
 using namespace std;
 
+string& trim(string& s) //去除字符串前后引号
+{
+	if (s.empty())
+	{
+		return s;
+	}
+	s.erase(0, s.find_first_not_of("\""));
+	s.erase(s.find_last_not_of("\"") + 1);
+	return s;
+}
+
 int main()
 {
 	ifstream infile;
@@ -27,7 +38,7 @@ int main()
 		case 1:
 			cout << "Input the path: ";
 			getline(cin, path, '\n');
-			infile.open(path, ios::in); //打开文件
+			infile.open(trim(path), ios::in); //打开文件
 			if (!infile.is_open())
 				cerr << "Can't open with " << path << endl;
 			else

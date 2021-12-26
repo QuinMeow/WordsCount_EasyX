@@ -4,6 +4,7 @@
 #include <graphics.h>
 #include <vector>
 #include <string>
+#include <regex>
 
 using namespace std;
 class Dictionary
