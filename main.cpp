@@ -2,6 +2,8 @@
 #include <fstream>
 #include <graphics.h>
 #include <string>
+#include <conio.h>
+#include <tchar.h>
 #include "Dictionary.h"
 using namespace std;
 
